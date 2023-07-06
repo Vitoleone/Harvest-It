@@ -30,4 +30,12 @@ public class PlayerAnimator : MonoBehaviour
     {
         playerAnimator.Play("PlayerIdleAnim");
     }
+    public void PlaySeedingAnimation()
+    {
+        playerAnimator.SetLayerWeight(1,1);
+    }
+    public void StopSeedingAnimation()
+    {
+        playerAnimator.SetLayerWeight(1,0);
+    }
 }
