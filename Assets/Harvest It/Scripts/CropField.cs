@@ -81,4 +81,19 @@ public class CropField : MonoBehaviour
    {
       return state == TileFieldState.Empty;
    }
+
+   public void WaterCollidedCallback(Vector3[] waterPositions)
+   {
+      throw new NotImplementedException();
+   }
+
+   public bool IsSeeded()
+   {
+      return state == TileFieldState.Seeded;
+   }
+
+   public bool IsWatered()
+   {
+      return state == TileFieldState.Watered;
+   }
 }
