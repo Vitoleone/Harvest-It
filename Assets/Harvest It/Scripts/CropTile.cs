@@ -3,34 +3,33 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
+public enum TileFieldState
+{
+    Empty,
+    Seeded,
+    Watered
+}
 public class CropTile : MonoBehaviour
 {
-    public enum State
-    {
-        Empty,
-        Seeded,
-        Watered
-    }
-
     [Header("Attributes")] 
     [SerializeField] private Transform cropParent;
 
-    private State state;
+    private TileFieldState _tileFieldState;
     // Start is called before the first frame update
     void Start()
     {
-        state = State.Empty;
+        _tileFieldState = TileFieldState.Empty;
     }
     
 
     public bool IsEmpty()
     {
-        return state == State.Empty;
+        return _tileFieldState == TileFieldState.Empty;
     }
 
     public void Seed(CropData cropData)
     {
-        state = State.Seeded;
+        _tileFieldState = TileFieldState.Seeded;
         Crop crop = Instantiate(cropData.cropPrefab, transform.position + Vector3.up*0.5f , quaternion.identity,cropParent);
         
     }

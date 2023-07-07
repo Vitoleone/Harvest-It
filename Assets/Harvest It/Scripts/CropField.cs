@@ -10,9 +10,14 @@ public class CropField : MonoBehaviour
    private List<CropTile> croptiles = new List<CropTile>();
    [Header("Settings")]
    public CropData cropData;
+   private TileFieldState state;
+   private int tilesSeeded;
+   [Header("Actions")] 
+   public static Action<CropField> onFullySeeded;
 
    private void Start()
    {
+      state = TileFieldState.Empty;
       StoreTiles();
    }
 
@@ -40,6 +45,15 @@ public class CropField : MonoBehaviour
    private void Seed(CropTile closestCropTile)
    {
       closestCropTile.Seed(cropData);
+      tilesSeeded++;
+      if (tilesSeeded == croptiles.Count)
+         FieldFullySeeded();
+   }
+
+   private void FieldFullySeeded()
+   {
+      state = TileFieldState.Seeded;
+      onFullySeeded?.Invoke(this);
    }
 
    private CropTile GetClosestCropTile(Vector3 seedPosition)
@@ -62,5 +76,9 @@ public class CropField : MonoBehaviour
          return null;
 
       return croptiles[closestCropTileIndex];
+   }
+   public bool IsEmpty()
+   {
+      return state == TileFieldState.Empty;
    }
 }
