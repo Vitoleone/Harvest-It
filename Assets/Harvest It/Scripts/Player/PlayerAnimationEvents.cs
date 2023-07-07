@@ -17,4 +17,8 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         waterParticles.Play();
     }
+    void StopWaterParticles()
+    {
+        waterParticles.Stop();
+    }
 }
