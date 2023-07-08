@@ -48,5 +48,10 @@ public class CropTile : MonoBehaviour
     }
 
 
-    
+    public void Harvest()
+    {
+        _tileFieldState = TileFieldState.Empty;
+        crop.Harvested();
+        TileRenderer.material.color = Color.white;
+    }
 }

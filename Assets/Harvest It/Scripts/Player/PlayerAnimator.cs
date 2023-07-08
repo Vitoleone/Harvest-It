@@ -50,4 +50,13 @@ public class PlayerAnimator : MonoBehaviour
     {
         playerAnimator.SetLayerWeight(2,1);
     }
+    public void PlayHarvestingAnimation()
+    {
+        playerAnimator.SetLayerWeight(3,1);
+    }
+
+    public void StopHarvestingAnimation()
+    {
+        playerAnimator.SetLayerWeight(3,0);
+    }
 }

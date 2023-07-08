@@ -56,7 +56,6 @@ public class PlayerSeedAbility : MonoBehaviour
       {
          if (cropField.IsEmpty())
          {
-            
             currentCropField = cropField;
             EnteredCropField(currentCropField);
          }

@@ -13,9 +13,12 @@ public class CropField : MonoBehaviour
    private TileFieldState state;
    private int tilesSeeded;
    private int tilesWatered;
+   private int tilesHarvest;
    [Header("Actions")] 
    public static Action<CropField> onFullySeeded;
    public static Action<CropField> onFullyWatered;
+   public static Action<CropField> onFullyHarvested;
+   
 
    private void Start()
    {
@@ -128,6 +131,11 @@ public class CropField : MonoBehaviour
    private void Water(CropTile closestCropTile)
    {
       closestCropTile.Water();
+      tilesWatered++;
+      if (tilesWatered == croptiles.Count)
+      {
+         FieldFullyWatered();
+      }
    }
 
    public bool IsSeeded()
@@ -138,5 +146,36 @@ public class CropField : MonoBehaviour
    public bool IsWatered()
    {
       return state == TileFieldState.Watered;
+   }
+
+   public void Harvest(Transform harvestSphere)
+   {
+      float harvestRadius = harvestSphere.localScale.x;
+      for (int i = 0; i < croptiles.Count; i++)
+      {
+         if(croptiles[i].IsEmpty())
+            continue;
+         float distance = Vector2.Distance(harvestSphere.position, croptiles[i].gameObject.transform.position);
+         if (distance <= harvestRadius)
+         {
+            HarvestTile(croptiles[i]);
+         }
+      }
+   }
+
+   private void HarvestTile(CropTile cropTile)
+   {
+      cropTile.Harvest();
+      tilesHarvest++;
+      if (tilesHarvest >= croptiles.Count)
+         FieldFullyHarvested();
+   }
+
+   private void FieldFullyHarvested()
+   {
+      tilesHarvest = 0;
+      tilesSeeded = 0;
+      tilesWatered = 0;
+      onFullyHarvested?.Invoke(this);
    }
 }
