@@ -36,13 +36,14 @@ public class CropTile : MonoBehaviour
     public void Water()
     {
         _tileFieldState = TileFieldState.Watered;
-        TileRenderer.material.color = WateredColor;
+        TileRenderer.gameObject.LeanColor(WateredColor, 1).setEase(LeanTweenType.easeOutBack);
+        crop.Grown();
     }
 
     public void Seed(CropData cropData)
     {
         _tileFieldState = TileFieldState.Seeded;
-        crop = Instantiate(cropData.cropPrefab, transform.position + Vector3.up*0.5f , quaternion.identity,cropParent);
+        crop = Instantiate(cropData.cropPrefab, transform.position + Vector3.up*0.5f , quaternion.identity);
         
     }
 

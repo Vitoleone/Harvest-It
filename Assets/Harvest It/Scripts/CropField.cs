@@ -31,6 +31,23 @@ public class CropField : MonoBehaviour
       }
    }
 
+   [NaughtyAttributes.Button()]
+   void InstantSeedTiles()
+   {
+      for (int i = 0; i < croptiles.Count; i++)
+      {
+         Seed(croptiles[i]);
+      }
+   }
+   [NaughtyAttributes.Button()]
+   void InstantWaterTiles()
+   {
+      for (int i = 0; i < croptiles.Count; i++)
+      {
+         Water(croptiles[i]);
+      }
+   }
+
    public void SeedsCollidedCallback(Vector3[] seedPositions)
    {
       for (int i = 0; i < seedPositions.Length; i++)

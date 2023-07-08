@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
 
-    // Update is called once per frame
-    void Update()
+    public void Grown()
     {
-        
+        gameObject.LeanScale(Vector3.one * 5.1f, 1.75f).setEase(LeanTweenType.easeOutBack);
     }
 }
