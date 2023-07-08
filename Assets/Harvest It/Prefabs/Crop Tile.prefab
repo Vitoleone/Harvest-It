@@ -130,6 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cropParent: {fileID: 3332144137308725698}
+  TileRenderer: {fileID: 2651405731789243114}
+  WateredColor: {r: 0.53333336, g: 0.2901961, b: 0.22352941, a: 0}
 --- !u!1 &8023455006809796464
 GameObject:
   m_ObjectHideFlags: 0

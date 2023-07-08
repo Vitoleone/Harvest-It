@@ -12,8 +12,10 @@ public class CropField : MonoBehaviour
    public CropData cropData;
    private TileFieldState state;
    private int tilesSeeded;
+   private int tilesWatered;
    [Header("Actions")] 
    public static Action<CropField> onFullySeeded;
+   public static Action<CropField> onFullyWatered;
 
    private void Start()
    {
@@ -84,7 +86,31 @@ public class CropField : MonoBehaviour
 
    public void WaterCollidedCallback(Vector3[] waterPositions)
    {
-      throw new NotImplementedException();
+      for (int i = 0; i < waterPositions.Length; i++)
+      {
+         CropTile closestCropTile = GetClosestCropTile(waterPositions[i]);
+         if(closestCropTile == null)
+            continue;
+         if(!closestCropTile.IsSeeded())
+            continue;
+         Water(closestCropTile);
+         tilesWatered++;
+         if (tilesWatered == croptiles.Count)
+         {
+            FieldFullyWatered();
+         }
+      }
+   }
+
+   private void FieldFullyWatered()
+   {
+      state = TileFieldState.Watered;
+      onFullyWatered?.Invoke(this);
+   }
+
+   private void Water(CropTile closestCropTile)
+   {
+      closestCropTile.Water();
    }
 
    public bool IsSeeded()

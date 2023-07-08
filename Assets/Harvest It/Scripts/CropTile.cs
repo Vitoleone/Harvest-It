@@ -13,6 +13,9 @@ public class CropTile : MonoBehaviour
 {
     [Header("Attributes")] 
     [SerializeField] private Transform cropParent;
+    [SerializeField] private MeshRenderer TileRenderer;
+    [SerializeField] private Color WateredColor;
+    private Crop crop;
 
     private TileFieldState _tileFieldState;
     // Start is called before the first frame update
@@ -26,11 +29,23 @@ public class CropTile : MonoBehaviour
     {
         return _tileFieldState == TileFieldState.Empty;
     }
+    public bool IsSeeded()
+    {
+        return _tileFieldState == TileFieldState.Seeded;
+    }
+    public void Water()
+    {
+        _tileFieldState = TileFieldState.Watered;
+        TileRenderer.material.color = WateredColor;
+    }
 
     public void Seed(CropData cropData)
     {
         _tileFieldState = TileFieldState.Seeded;
-        Crop crop = Instantiate(cropData.cropPrefab, transform.position + Vector3.up*0.5f , quaternion.identity,cropParent);
+        crop = Instantiate(cropData.cropPrefab, transform.position + Vector3.up*0.5f , quaternion.identity,cropParent);
         
     }
+
+
+    
 }

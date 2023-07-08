@@ -16,7 +16,7 @@ public class PlayerWaterAbility : MonoBehaviour
       playerAnimator = GetComponent<PlayerAnimator>();
       playerToolSelector = GetComponent<PlayerToolSelector>();
       WaterParticle.onWaterCollided += WaterCollidedCallback;
-      //CropField.onFullySeeded += CropFieldOnFullySeeded;
+      CropField.onFullyWatered += CropFieldOnFullyWatered;
       playerToolSelector.onToolSelected += ToolSelectedCallBack;
    }
 
@@ -25,7 +25,7 @@ public class PlayerWaterAbility : MonoBehaviour
    private void OnDestroy()
    {
       WaterParticle.onWaterCollided -= WaterCollidedCallback;
-      //CropField.onFullySeeded -= CropFieldOnFullySeeded;
+      CropField.onFullyWatered -= CropFieldOnFullyWatered;
       playerToolSelector.onToolSelected -= ToolSelectedCallBack;
    }
 
@@ -45,6 +45,7 @@ public class PlayerWaterAbility : MonoBehaviour
    {
       if (currentCropField == null)
          return;
+      Debug.Log("current tile is not null");
       currentCropField.WaterCollidedCallback(waterPositions);
    }
 
@@ -63,16 +64,24 @@ public class PlayerWaterAbility : MonoBehaviour
    private void EnteredCropField(CropField cropField)
    {
       if (playerToolSelector.CanWater())
+      {
+         if (currentCropField == null)
+         {
+            currentCropField = cropField;
+         }
          playerAnimator.PlayWateringAnimation();
-
+      }
    }
 
    private void OnTriggerStay(Collider other)
    {
       if (other.gameObject.TryGetComponent(out CropField cropField))
       {
-         if(cropField.IsSeeded())
-         EnteredCropField(cropField);
+         if (cropField.IsSeeded())
+         {
+            currentCropField = cropField;
+            EnteredCropField(cropField);
+         }
       }
    }
 

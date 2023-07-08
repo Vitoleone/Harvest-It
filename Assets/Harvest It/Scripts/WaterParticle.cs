@@ -20,5 +20,6 @@ public class WaterParticle : MonoBehaviour
             collisionParticlePosition[i] = collisionEvents[i].intersection;
         }
         onWaterCollided?.Invoke(collisionParticlePosition);
+        Debug.Log("Water Collided");
     }
 }
