@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7139832129577413124}
   - component: {fileID: 7139832129577413127}
   m_Layer: 0
-  m_Name: HarvestParticle
+  m_Name: CornHarvestParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

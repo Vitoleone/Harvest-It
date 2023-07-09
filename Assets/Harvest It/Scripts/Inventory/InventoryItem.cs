@@ -12,10 +12,12 @@ public class InventoryItem
   }
   public CropType cropType;
   public int amount;
+  public Sprite cropIcon;
 
   public InventoryItem(CropType cropType, int amount)
   {
     this.cropType = cropType;
     this.amount = amount;
+    
   }
 }

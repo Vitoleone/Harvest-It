@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b33c9011b316ba4388b5291c2e8e99d, type: 3}
-  m_Name: CornData
+  m_Name: TomatoData
   m_EditorClassIdentifier: 
-  cropPrefab: {fileID: 3700187972400076782, guid: 6c36f24d810321243b83abedfa29aae4,
+  cropPrefab: {fileID: 3700187972400076782, guid: 5d74a8cf5f6f2d045bad0e8cf0c3aed9,
     type: 3}
-  cropType: 0
-  cropIcon: {fileID: 21300000, guid: 82b1f675f4ea8fb4c8b63b1df1418228, type: 3}
+  cropType: 1
+  cropIcon: {fileID: 21300000, guid: 69f62ad8086630a4ea97d69f8c6a9367, type: 3}

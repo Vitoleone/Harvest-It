@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory
 {
-   [SerializeField] private List<InventoryItem> items = new List<InventoryItem>();
+   [SerializeField] 
+   private List<InventoryItem> items = new List<InventoryItem>();
 
    public void CropHarvestedCallback(InventoryItem.CropType cropType)
    {
@@ -26,5 +28,15 @@ public class Inventory
       }
       items.Add(new InventoryItem(cropType,1));
 
+   }
+   public InventoryItem[] GetInventoryItems()
+   {
+      return items.ToArray();
+   }
+
+
+   public void Clear()
+   {
+      items.Clear();
    }
 }
