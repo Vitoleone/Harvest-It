@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -15,7 +16,10 @@ public class CropTile : MonoBehaviour
     [SerializeField] private Transform cropParent;
     [SerializeField] private MeshRenderer TileRenderer;
     [SerializeField] private Color WateredColor;
+    private CropData cropData;
     private Crop crop;
+    [Header("Actions")] 
+    public static Action<InventoryItem.CropType> onCropHarvested;
 
     private TileFieldState _tileFieldState;
     // Start is called before the first frame update
@@ -44,7 +48,7 @@ public class CropTile : MonoBehaviour
     {
         _tileFieldState = TileFieldState.Seeded;
         crop = Instantiate(cropData.cropPrefab, transform.position + Vector3.up*0.5f , quaternion.identity);
-        
+        this.cropData = cropData;
     }
 
 
@@ -53,5 +57,6 @@ public class CropTile : MonoBehaviour
         _tileFieldState = TileFieldState.Empty;
         crop.Harvested();
         TileRenderer.material.color = Color.white;
+        onCropHarvested?.Invoke(cropData.cropType);
     }
 }

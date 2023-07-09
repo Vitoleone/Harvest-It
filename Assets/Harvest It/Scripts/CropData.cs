@@ -7,4 +7,6 @@ public class CropData : ScriptableObject
 {
     [Header("Settings")] 
     public Crop cropPrefab;
+
+    public InventoryItem.CropType cropType;
 }
