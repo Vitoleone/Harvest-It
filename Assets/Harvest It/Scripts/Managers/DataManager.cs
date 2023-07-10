@@ -25,4 +25,17 @@ public class DataManager : MonoBehaviour
         Debug.LogError("No cropType found of that type");
         return null;
     }
+
+    public int GetEarningFromCropType(InventoryItem.CropType cropType)
+    {
+        for (int i = 0; i < allCropData.Length; i++)
+        {
+            if (allCropData[i].cropType == cropType)
+            {
+                return allCropData[i].price;
+            }
+        }
+        Debug.LogError("No cropType found of that type");
+        return 0;
+    }
 }

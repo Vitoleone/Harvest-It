@@ -7,9 +7,23 @@ using UnityEngine;
 [RequireComponent(typeof(InventoryDisplay))]
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager instance;
     public Inventory inventory;
     private InventoryDisplay inventoryDisplay;
     public string dataPath;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     void Start()
     {
         dataPath = Application.dataPath + "/inventoryData.txt";
@@ -59,7 +73,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     [NaughtyAttributes.Button()]
-    private void ClearInventory()
+    public void ClearInventory()
     {
         inventory.Clear();
         inventoryDisplay.UpdateDisplay(inventory);
@@ -70,5 +84,10 @@ public class InventoryManager : MonoBehaviour
     {
         string data = JsonUtility.ToJson(inventory, true);
         File.WriteAllText(dataPath,data);
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 }
