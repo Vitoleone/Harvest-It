@@ -43,4 +43,14 @@ public class CashManager : MonoBehaviour
         SaveData();
         UpdateCoinContainer();
     }
+
+    public void UseCoins(int amount)
+    {
+        AddCoins(-amount);
+    }
+
+    public int GetCoins()
+    {
+        return coin;
+    }
 }

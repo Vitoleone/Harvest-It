@@ -162,11 +162,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Coolvetica SDF
+  m_Name: Coolvetica SDF 1
   m_EditorClassIdentifier: 
-  hashCode: 587743602
+  hashCode: 102654435
   material: {fileID: -6932200566149645828}
-  materialHashCode: 929310866
+  materialHashCode: -1933659293
   m_Version: 1.1.0
   m_SourceFontFileGUID: 8af97fe5802ff2740ab33c8fc7fafd9e
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 8af97fe5802ff2740ab33c8fc7fafd9e,
