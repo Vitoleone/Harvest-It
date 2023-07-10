@@ -13,28 +13,27 @@ public class WorldManager : MonoBehaviour
     [Header("Data")] 
     private WorldData worldData;
     private string dataPath;
+    private bool shouldSave;
 
     private void Awake()
     {
         Chunk.onUnlock += ChunkUnlockedCallback;
+        Chunk.onPriceChanged += ChunkPriceChangedCallback;
     }
-
     
+
     void Start()
     {
         dataPath = Application.dataPath + "/WorldData.txt";
         LoadWorld();
         Initialize();
+        InvokeRepeating("TrySave",1,1);
     }
 
     private void OnDestroy()
     {
         Chunk.onUnlock -= ChunkUnlockedCallback;
-    }
-
-    void Update()
-    {
-        
+        Chunk.onPriceChanged -= ChunkPriceChangedCallback;
     }
     
     private void Initialize()
@@ -44,7 +43,10 @@ public class WorldManager : MonoBehaviour
             world.GetChild(i).GetComponent<Chunk>().Initialize(worldData.chunkPrices[i]);
         }
     }
-    
+    private void ChunkPriceChangedCallback()
+    {
+        shouldSave = true;
+    }
     private void ChunkUnlockedCallback()
     {
         
@@ -57,10 +59,11 @@ public class WorldManager : MonoBehaviour
         if (!File.Exists(dataPath))
         {
             FileStream fs = new FileStream(dataPath, FileMode.Create);
-            worldData = new WorldData(world.childCount);
+            worldData = new WorldData();
             for (int i = 0; i < world.childCount; i++)
             {
-                worldData.chunkPrices[i] = world.GetChild(i).GetComponent<Chunk>().GetInitialPrice();
+                int chunkInitialPrice = world.GetChild(i).GetComponent<Chunk>().GetInitialPrice();
+                worldData.chunkPrices.Add(chunkInitialPrice);
             }
             string worldDataString = JsonUtility.ToJson(worldData, true);
             byte[] worldDataBytes = Encoding.UTF8.GetBytes(worldDataString);
@@ -71,24 +74,58 @@ public class WorldManager : MonoBehaviour
         {
             data = File.ReadAllText(dataPath);
             worldData = JsonUtility.FromJson<WorldData>(data);
+
+            if (worldData.chunkPrices.Count < world.childCount)
+            {
+                UpdateData();
+            }
         }
        
         
     }
 
+    private void UpdateData()
+    {
+        int missingData = world.childCount - worldData.chunkPrices.Count;
+        for (int i = 0; i < missingData; i++)
+        {
+            int chunkIndex = world.childCount - missingData + i;
+            int chunkPrice = world.GetChild(chunkIndex).GetComponent<Chunk>().GetInitialPrice();
+            worldData.chunkPrices.Add(chunkPrice);
+        }
+    }
+
     void SaveWorld()
     {
-        if (worldData.chunkPrices.Length != world.childCount)
+        if (worldData.chunkPrices.Count != world.childCount)
         {
-            worldData = new WorldData(world.childCount);
+            worldData = new WorldData();
         }
 
         for (int i = 0; i < world.childCount; i++)
         {
-            worldData.chunkPrices[i] = world.GetChild(i).GetComponent<Chunk>().GetCurrentPrice();
+            int chunkCurrentPrice = world.GetChild(i).GetComponent<Chunk>().GetCurrentPrice();
+            if (worldData.chunkPrices.Count > i)
+            {
+                worldData.chunkPrices[i] = chunkCurrentPrice;
+            }
+            else
+            {
+                worldData.chunkPrices.Add(chunkCurrentPrice);
+            }
+            worldData.chunkPrices.Add(chunkCurrentPrice);
         }
 
         string data = JsonUtility.ToJson(worldData, true);
         File.WriteAllText(dataPath,data);
+    }
+
+    void TrySave()
+    {
+        if (shouldSave)
+        {
+            SaveWorld();
+            shouldSave = false;
+        }
     }
 }

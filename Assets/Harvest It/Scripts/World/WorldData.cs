@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class WorldData
 {
-  public int[] chunkPrices;
+  public List<int> chunkPrices;
 
-  public WorldData(int chunkAmount)
+  public WorldData()
   {
-    chunkPrices = new int[chunkAmount];
+    chunkPrices = new List<int>();
   }
 }
