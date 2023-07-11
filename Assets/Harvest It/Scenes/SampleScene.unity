@@ -1351,6 +1351,17 @@ MonoBehaviour:
   world: {fileID: 639400526}
   gridSize: 20
   gridScale: 5
+  chunkShapes:
+  - {fileID: 3190008219495673678, guid: 9c280b600538ba14297faffa9c40ba72, type: 3}
+  - {fileID: -6914558487116417446, guid: 9c280b600538ba14297faffa9c40ba72, type: 3}
+  - {fileID: 6219564489641475509, guid: 9c280b600538ba14297faffa9c40ba72, type: 3}
+  - {fileID: 3353263315571485929, guid: 9c280b600538ba14297faffa9c40ba72, type: 3}
+  - {fileID: -2130171703516668042, guid: 9c280b600538ba14297faffa9c40ba72, type: 3}
+  - {fileID: 7370557468838794576, guid: 9c280b600538ba14297faffa9c40ba72, type: 3}
+  - {fileID: -6164489387581544253, guid: 9c280b600538ba14297faffa9c40ba72, type: 3}
+  - {fileID: 8533405670652875987, guid: 9c280b600538ba14297faffa9c40ba72, type: 3}
+  - {fileID: -3394351414592798879, guid: 9c280b600538ba14297faffa9c40ba72, type: 3}
+  - {fileID: -4031337663994023298, guid: 9c280b600538ba14297faffa9c40ba72, type: 3}
 --- !u!1001 &568348027
 PrefabInstance:
   m_ObjectHideFlags: 0

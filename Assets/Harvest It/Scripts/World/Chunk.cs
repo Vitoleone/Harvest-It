@@ -11,6 +11,7 @@ public class Chunk : MonoBehaviour
     [SerializeField] private GameObject chunkUnlockedElements;
     [SerializeField] private GameObject chunkLockedElements;
     [SerializeField] private TextMeshPro chunkPriceText;
+    [SerializeField] private MeshFilter chunkFilter;
     private ChunkWalls chunkWalls;
 
     [Header("Settings")] 
@@ -91,5 +92,10 @@ public class Chunk : MonoBehaviour
     public void DisplayUnlockedElements()
     {
         chunkLockedElements.SetActive(true);
+    }
+
+    public void SetRenderer(Mesh chunkShape)
+    {
+        chunkFilter.mesh = chunkShape;
     }
 }

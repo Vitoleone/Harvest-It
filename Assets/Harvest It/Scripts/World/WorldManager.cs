@@ -7,6 +7,20 @@ using UnityEngine;
 
 public class WorldManager : MonoBehaviour
 {
+    private enum  ChunkShape
+    {
+        None,
+        TopRight,
+        BottomRight,
+        BottomLeft,
+        TopLeft,
+        Top,
+        Right,
+        Bottom,
+        Left,
+        Four
+    }
+    
     [Header("Attributes")] 
     [SerializeField] private Transform world;
 
@@ -19,6 +33,9 @@ public class WorldManager : MonoBehaviour
     private string dataPath;
     private bool shouldSave;
     private Chunk[,] grid;
+
+    [Header("Chunk Meshes")] 
+    [SerializeField] private Mesh[] chunkShapes;
 
     private void Awake()
     {
@@ -65,26 +82,10 @@ public class WorldManager : MonoBehaviour
                     continue;
                 }
 
-                Chunk frontChunk = null;
-                if (IsValidGridPosition(x,y+1))
-                {
-                    frontChunk = grid[x, y+1];
-                }
-                Chunk rightChunk = null;
-                if (IsValidGridPosition(x+1,y))
-                {
-                    rightChunk = grid[x+1, y];
-                }
-                Chunk backChunk = null;
-                if (IsValidGridPosition(x,y-1))
-                {
-                    backChunk = grid[x, y-1];
-                }
-                Chunk leftChunk = null;
-                if (IsValidGridPosition(x-1,y))
-                {
-                    leftChunk = grid[x-1, y];
-                }
+                Chunk frontChunk = IsValidGridPosition(x, y + 1) ? grid[x, y + 1] : null;
+                Chunk rightChunk = IsValidGridPosition(x, y + 1) ? grid[x + 1, y] : null;
+                Chunk backChunk = IsValidGridPosition(x, y - 1) ? grid[x, y - 1] : null;
+                Chunk leftChunk = IsValidGridPosition(x, y + 1) ? grid[x - 1, y] : null;
 
                 int configuration = 0;
                 if (frontChunk != null && frontChunk.IsUnlocked())
@@ -96,7 +97,65 @@ public class WorldManager : MonoBehaviour
                 if (leftChunk != null && leftChunk.IsUnlocked())
                     configuration = configuration + 8;
                 chunk.UpdateWalls(configuration);
+                SetChunkRenderer(chunk,configuration);
             }
+        }
+    }
+
+    private void SetChunkRenderer(Chunk chunk, int configuration)
+    {
+        switch (configuration)
+        {
+            case 0:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Four]);
+                break;
+            case 1:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Bottom]);
+                break;
+            case 2:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Left]);
+                break;
+            case 3:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.BottomLeft]);
+                break;
+            case 4:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Top]);
+                break;
+            case 5:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]);
+                break;
+            case 6:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.TopLeft]);
+                break;
+            case 7:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]);
+                break;
+            case 8:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Right]);
+                break;
+            case 9:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.BottomRight]);
+                break;
+            case 10:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]);
+                break;
+            case 11:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]);
+                break;
+            case 12:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.TopRight]);
+                break;
+            case 13:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]);
+                break;
+            case 14:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]);
+                break;
+            case 15:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]);
+                break;
+            
+           
         }
     }
 
