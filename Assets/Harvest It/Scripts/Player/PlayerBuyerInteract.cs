@@ -26,8 +26,8 @@ public class PlayerBuyerInteract : MonoBehaviour
 
             earning += itemPrice * items[i].amount;
         }
-
-        CashManager.instance.AddCoins(earning);
+        Debug.Log("Earning = " + earning );
+        TransactionEffectManager.instance.PlayCoinPartcile(earning);
         InventoryManager.instance.ClearInventory();
     }
 

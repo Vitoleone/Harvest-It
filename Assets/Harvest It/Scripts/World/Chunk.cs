@@ -85,7 +85,6 @@ public class Chunk : MonoBehaviour
 
     public void UpdateWalls(int configuration)
     {
-        Debug.Log("Chunk Name = " + gameObject.name +"Configuration = " + configuration + "IsUnlocked = "+IsUnlocked());
         chunkWalls.Configure(configuration);
     }
 
