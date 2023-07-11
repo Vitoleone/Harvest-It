@@ -37,6 +37,12 @@ public class CashManager : MonoBehaviour
         PlayerPrefs.SetInt("Coin",coin);
     }
 
+    [NaughtyAttributes.Button()]
+    public void Add500CoinsToPlayer()
+    {
+        AddCoins(500);
+    }
+
     public void AddCoins( int earning)
     {
         coin += earning;
