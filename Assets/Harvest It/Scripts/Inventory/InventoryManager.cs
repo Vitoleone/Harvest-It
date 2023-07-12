@@ -26,7 +26,7 @@ public class InventoryManager : MonoBehaviour
     
     void Start()
     {
-        dataPath = Application.dataPath + "/inventoryData.txt";
+        dataPath = Application.persistentDataPath + "/inventoryData.txt";
         inventory = new Inventory();
         CropTile.onCropHarvested += obj => CropHarvestedCallback(obj);
         LoadInventory();

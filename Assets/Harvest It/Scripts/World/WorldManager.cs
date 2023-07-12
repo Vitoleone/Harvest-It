@@ -46,7 +46,7 @@ public class WorldManager : MonoBehaviour
 
     void Start()
     {
-        dataPath = Application.dataPath + "/WorldData.txt";
+        dataPath = Application.persistentDataPath + "/WorldData.txt";
         LoadWorld();
         Initialize();
         InvokeRepeating("TrySave",1,1);
