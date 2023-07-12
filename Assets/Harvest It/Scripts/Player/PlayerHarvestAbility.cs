@@ -75,7 +75,7 @@ public class PlayerHarvestAbility : MonoBehaviour
          if (cropField.IsWatered())
          {
             currentCropField = cropField;
-            EnteredCropField(cropField);
+            EnteredCropField(currentCropField);
          }
       }
    }

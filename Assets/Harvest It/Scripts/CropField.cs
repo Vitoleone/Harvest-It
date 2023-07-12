@@ -125,6 +125,11 @@ public class CropField : MonoBehaviour
    private void FieldFullyWatered()
    {
       state = TileFieldState.Watered;
+      for (int i = 0; i < croptiles.Count; i++)
+      {
+         if(croptiles[i].IsSeeded())
+            Water(croptiles[i]);
+      }
       onFullyWatered?.Invoke(this);
    }
 
@@ -173,6 +178,7 @@ public class CropField : MonoBehaviour
 
    private void FieldFullyHarvested()
    {
+      state = TileFieldState.Empty;
       tilesHarvest = 0;
       tilesSeeded = 0;
       tilesWatered = 0;
