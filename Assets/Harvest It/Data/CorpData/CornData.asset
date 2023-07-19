@@ -17,3 +17,4 @@ MonoBehaviour:
   cropType: 0
   cropIcon: {fileID: 21300000, guid: 82b1f675f4ea8fb4c8b63b1df1418228, type: 3}
   price: 1
+  cropHealth: 1

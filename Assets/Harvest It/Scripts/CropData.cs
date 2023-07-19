@@ -10,4 +10,5 @@ public class CropData : ScriptableObject
     public InventoryItem.CropType cropType;
     public Sprite cropIcon;
     public int price;
+    public int cropHealth;
 }

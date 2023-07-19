@@ -10,6 +10,7 @@ public class CropField : MonoBehaviour
    private List<CropTile> croptiles = new List<CropTile>();
    [Header("Settings")]
    public CropData cropData;
+   public int cropFieldHealth;
    private TileFieldState state;
    private int tilesSeeded;
    private int tilesWatered;
@@ -23,6 +24,7 @@ public class CropField : MonoBehaviour
    private void Start()
    {
       state = TileFieldState.Empty;
+      cropFieldHealth = cropData.cropHealth; 
       StoreTiles();
    }
 
@@ -183,6 +185,20 @@ public class CropField : MonoBehaviour
       tilesHarvest = 0;
       tilesSeeded = 0;
       tilesWatered = 0;
+      cropFieldHealth = cropData.cropHealth;
       onFullyHarvested?.Invoke(this);
+   }
+
+   public void TakeDamage(int damage = 1)
+   {
+      cropFieldHealth -= damage;
+      for (int i = 0; i < croptiles.Count; i++)
+      {
+         if(croptiles[i].IsEmpty())
+            continue;
+
+         croptiles[i].TakeDamage();
+
+      }
    }
 }

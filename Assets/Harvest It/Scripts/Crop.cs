@@ -22,4 +22,9 @@ public class Crop : MonoBehaviour
         harvestParticle.transform.parent = null;
         harvestParticle.Play();
     }
+
+    public void TakeDamage()
+    {
+        gameObject.LeanScale(Vector3.one * 6.5f, 0.5f).setEase(LeanTweenType.easeShake);
+    }
 }

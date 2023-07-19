@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed473d96e808f34ab089b8cf029a015, type: 3}
+  m_Name: DefaultScythe
+  m_EditorClassIdentifier: 
+  name: Default Scythe
+  price: 0
+  damage: 1
+  stickMaterialColor: {r: 0.745283, g: 0.47736815, b: 0.26295832, a: 0}
+  bladeMaterialColor: {r: 0.9056604, g: 0.8492702, b: 0.8492702, a: 0}
