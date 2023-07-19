@@ -53,14 +53,17 @@ public class CropField : MonoBehaviour
 
    public void SeedsCollidedCallback(Vector3[] seedPositions)
    {
-      for (int i = 0; i < seedPositions.Length; i++)
+      for (int i = 0; i < croptiles.Count; i++)
       {
-         CropTile closestCropTile = GetClosestCropTile(seedPositions[i]);
-         if(closestCropTile == null)
+         if(croptiles[i] == null)
             continue;
-         if(!closestCropTile.IsEmpty())
+         if(!croptiles[i].IsEmpty())
             continue;
-         Seed(closestCropTile);
+         Seed(croptiles[i]);
+         if (i == croptiles.Count)
+         {
+            FieldFullySeeded();
+         }
       }
    }
 
@@ -106,16 +109,14 @@ public class CropField : MonoBehaviour
 
    public void WaterCollidedCallback(Vector3[] waterPositions)
    {
-      for (int i = 0; i < waterPositions.Length; i++)
+      for (int i = 0; i < croptiles.Count; i++)
       {
-         CropTile closestCropTile = GetClosestCropTile(waterPositions[i]);
-         if(closestCropTile == null)
+         if(croptiles[i] == null)
             continue;
-         if(!closestCropTile.IsSeeded())
+         if(!croptiles[i].IsSeeded())
             continue;
-         Water(closestCropTile);
-         tilesWatered++;
-         if (tilesWatered == croptiles.Count)
+         Water(croptiles[i]);
+         if (i == croptiles.Count)
          {
             FieldFullyWatered();
          }
