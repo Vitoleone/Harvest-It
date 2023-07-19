@@ -185,6 +185,7 @@ public class CropField : MonoBehaviour
       tilesHarvest = 0;
       tilesSeeded = 0;
       tilesWatered = 0;
+      cropFieldHealth = cropData.cropHealth;
       onFullyHarvested?.Invoke(this);
    }
 

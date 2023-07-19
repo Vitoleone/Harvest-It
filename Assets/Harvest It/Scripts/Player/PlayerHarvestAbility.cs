@@ -71,9 +71,8 @@ public class PlayerHarvestAbility : MonoBehaviour
          }
          else
          {
-            coroutine = DamageCoroutine(1,currentCropField);
+            coroutine = DamageCoroutine(PlayerScytheController.instance.currentScythe.damage,currentCropField);
             StartCoroutine(coroutine);
-
          }
       }
    }
