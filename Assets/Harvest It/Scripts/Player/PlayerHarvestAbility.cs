@@ -10,6 +10,7 @@ public class PlayerHarvestAbility : MonoBehaviour
    [SerializeField] private Transform harvestSphere;
    private PlayerAnimator playerAnimator;
    private PlayerToolSelector playerToolSelector;
+   private IEnumerator coroutine;
    [Header("Settings")] 
    private CropField currentCropField;
    private bool canHarvest;
@@ -63,9 +64,25 @@ public class PlayerHarvestAbility : MonoBehaviour
             currentCropField = cropField;
          }
          playerAnimator.PlayHarvestingAnimation();
-         if (canHarvest)
-            currentCropField.Harvest(harvestSphere);
+         if (cropField.cropFieldHealth <= 0)
+         {
+            if (canHarvest)
+               currentCropField.Harvest(harvestSphere);
+         }
+         else
+         {
+            coroutine = DamageCoroutine(1,currentCropField);
+            StartCoroutine(coroutine);
+
+         }
       }
+   }
+
+   IEnumerator DamageCoroutine(int damage,CropField currentCropField)
+   {
+      yield return new WaitForSeconds(1);
+      currentCropField.TakeDamage(damage);
+      StopAllCoroutines();
    }
 
    private void OnTriggerStay(Collider other)
@@ -91,6 +108,7 @@ public class PlayerHarvestAbility : MonoBehaviour
 
    public void HarvestingStartCallback()
    {
+      
       canHarvest = true;
    }
 

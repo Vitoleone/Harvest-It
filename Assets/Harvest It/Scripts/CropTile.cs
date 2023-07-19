@@ -59,4 +59,9 @@ public class CropTile : MonoBehaviour
         TileRenderer.material.color = Color.white;
         onCropHarvested?.Invoke(cropData.cropType);
     }
+
+    public void TakeDamage()
+    {
+        crop.TakeDamage();
+    }
 }
