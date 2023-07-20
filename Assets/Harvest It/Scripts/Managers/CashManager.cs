@@ -8,7 +8,7 @@ public class CashManager : MonoBehaviour
 {
     public static CashManager instance;
     [Header("Attributes")] 
-    private int coin;
+    public int coin;
     private TextMeshProUGUI coinAmount;
     private void Awake()
     {

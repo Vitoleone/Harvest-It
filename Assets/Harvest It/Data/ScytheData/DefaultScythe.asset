@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: DefaultScythe
   m_EditorClassIdentifier: 
   name: Default Scythe
-  price: 0
-  damage: 1
+  price: 25
+  damage: 2
   stickMaterialColor: {r: 0.745283, g: 0.47736815, b: 0.26295832, a: 0}
   bladeMaterialColor: {r: 0.9056604, g: 0.8492702, b: 0.8492702, a: 0}
+  owned: 0

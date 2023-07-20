@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public class PlayerScytheController : MonoBehaviour
@@ -10,6 +13,8 @@ public class PlayerScytheController : MonoBehaviour
     public ScytheData[] allScytheDatas;
     public ScytheData currentScythe;
     public GameObject scythePrefab;
+    [Header("UI Actions")] 
+    public UnityAction<ScytheItemSectionDataHolder> onBuyedScythe;
     private void Awake()
     {
         if (instance != null)
@@ -38,10 +43,17 @@ public class PlayerScytheController : MonoBehaviour
         ChangeMaterial();
     }
 
+    public void ChangeCurrentScythe(ScytheData data)
+    {
+        currentScythe = data;
+        ChangeMaterial();
+    }
+
     public void ChangeMaterial()
     {
         scythePrefab.GetComponent<Renderer>().materials[0].color = currentScythe.stickMaterialColor;
         scythePrefab.GetComponent<Renderer>().materials[1].color = currentScythe.bladeMaterialColor;
+        Debug.Log("Değiştirildi");
 
     }
     

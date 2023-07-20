@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: GoldenScythe
   m_EditorClassIdentifier: 
   name: Golden Scythe
-  price: 500
-  damage: 3
+  price: 650
+  damage: 6
   stickMaterialColor: {r: 0.7830189, g: 0.62491995, b: 0.14330718, a: 0}
   bladeMaterialColor: {r: 0.9716981, g: 0.9029352, b: 0.1686721, a: 0}
+  owned: 0

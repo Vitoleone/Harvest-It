@@ -11,5 +11,6 @@ public class ScytheData : ScriptableObject
     public int damage;
     public Color stickMaterialColor;
     public Color bladeMaterialColor;
-    
+    public bool owned;
+
 }

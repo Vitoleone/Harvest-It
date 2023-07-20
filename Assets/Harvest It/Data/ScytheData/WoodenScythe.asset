@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aed473d96e808f34ab089b8cf029a015, type: 3}
-  m_Name: EmraldScythe
+  m_Name: WoodenScythe
   m_EditorClassIdentifier: 
-  name: Emrald Scythe
-  price: 150
-  damage: 4
-  stickMaterialColor: {r: 0.038625833, g: 0.3301887, b: 0.11840483, a: 0}
-  bladeMaterialColor: {r: 0.57713574, g: 0.754717, b: 0.35172656, a: 0}
-  owned: 0
+  name: Wooden Scythe
+  price: 0
+  damage: 1
+  stickMaterialColor: {r: 0.745283, g: 0.47736815, b: 0.26295832, a: 0}
+  bladeMaterialColor: {r: 0.74509805, g: 0.47843137, b: 0.2627451, a: 0}
+  owned: 1

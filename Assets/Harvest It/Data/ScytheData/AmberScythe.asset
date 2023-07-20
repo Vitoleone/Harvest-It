@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Amber Scythe
   price: 1200
-  damage: 6
+  damage: 8
   stickMaterialColor: {r: 0.6981132, g: 0.31496084, b: 0.18045564, a: 0}
   bladeMaterialColor: {r: 0.9150943, g: 0.34057152, b: 0.29697397, a: 0}
+  owned: 0
